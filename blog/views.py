@@ -7,6 +7,12 @@ from blog.models import BlogPost
 
 class BlogListView(ListView):
     model = BlogPost
+    template_name = 'blog/blogpost_list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset
+        queryset = queryset.filter(is_published=True)
+        return queryset
 
 
 class BlogCreateView(CreateView):
@@ -29,7 +35,7 @@ class BlogDetailView(DetailView):
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
-        self.object.views_count += 1
+        self.object.number_views += 1
         self.object.save()
         return self.object
 
