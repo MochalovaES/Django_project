@@ -13,14 +13,22 @@ def catalog_contacts(request):
     return render(request, 'catalog/contacts.html')
 
 
+def catalog_home(request):
+    context_ = {
+        'object_list_': Product.objects.all(),
+    }
+    return render(request, 'catalog/home.html', context_)
+
+
+
+#def catalog_products(request):
+#    context = {
+#        'object_list': Product.objects.all(),
+#    }
+#    return render(request, 'catalog/products_list.html', context)
+
 class ProductListView(ListView):
     model = Product
-
-
-class CategoryListView(ListView):
-    model = Category
-
-
 
 
 
