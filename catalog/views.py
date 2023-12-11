@@ -27,8 +27,10 @@ def catalog_home(request):
 #    }
 #    return render(request, 'catalog/products_list.html', context)
 
+
 class ProductListView(ListView):
     model = Product
+
 
 
 

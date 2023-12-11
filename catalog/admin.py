@@ -15,3 +15,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name',)
     list_filter = ('is_active',)
 
+
+admin.site.register(Product, ProductAdmin)
+admin.site.register(Category, CategoryAdmin)
+
