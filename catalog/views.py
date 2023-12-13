@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from catalog.models import Product, Category
 
@@ -28,14 +28,17 @@ def catalog_home(request):
 #    return render(request, 'catalog/products_list.html', context)
 
 
+
+
 class ProductListView(ListView):
+    paginate_by = 6
     model = Product
+    template_name = 'catalog/product_list.html'
+    extra_context = {
+        'objects_list': Product.objects.all()
+    }
 
 
-
-
-
-
-
-
-
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'catalog/product_detail.html'
