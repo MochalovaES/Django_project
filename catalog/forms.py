@@ -2,32 +2,35 @@ from django import forms
 from catalog.models import Product, Version
 
 
-class ProductForm(forms.ModelForm):
+class StyleFormMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if field_name != 'is_active':
+                field.widget.attrs['class'] = 'form-control'
+
+
+class ProductForm(StyleFormMixin, forms.ModelForm):
 
     class Meta:
         model = Product
         fields = '__all__'
 
-    def clean_product_name(self):
-        product_name = self.cleaned_data.get('name').lower()
-        bad_words = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно", "обман", "полиция", "радар"]
-        for word in bad_words:
+    def clean_name(self):
+        product_name = self.cleaned_data['name']
+        prohibited_list = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+        for word in prohibited_list:
             if word in product_name:
-                raise forms.ValidationError('Некорректное имя')
+                raise forms.ValidationError("В названии продукта есть запрещенные слова")
         return product_name
 
-    def clean_product_description(self):
-        product_description = self.cleaned_data.get('description').lower()
-        bad_words = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно", "обман", "полиция", "радар"]
-        for word in bad_words:
+    def clean_description(self):
+        product_description = self.cleaned_data['description']
+        prohibited_list = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+        for word in prohibited_list:
             if word in product_description:
-                raise forms.ValidationError('Некорректное имя')
+                raise forms.ValidationError("В описании продукта есть запрещенные слова")
         return product_description
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
 
 
 class VersionForm(forms.ModelForm):
@@ -43,7 +46,6 @@ class VersionForm(forms.ModelForm):
         self.fields["is_active"].widget.attrs['class'] = 'form-check-input'
 
     def clean_is_active(self):
-
         is_active = self.cleaned_data.get('is_active')
         all_active_versions = Version.objects.all().filter(product=self.cleaned_data.get('product')).filter(is_active=True)
         if len(all_active_versions) >= 1 and is_active:

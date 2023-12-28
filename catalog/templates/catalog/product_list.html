@@ -24,12 +24,17 @@
                                 <div class="btn-group">
                                     <a type="button" class="btn btn-lg btn-block btn-outline-primary"
                                        href="{% url 'catalog:product' object.pk %}">Подробнее</a>
+                                    <a type="button" class="btn btn-lg btn-block btn-outline-primary"
+                                       href="{% url 'catalog:product_update' object.pk %}">Редактировать</a>
 
                                 </div>
                                 <small class="text-body-secondary">9 mins</small>
                             </div>
                         </div>
                     </div>
+                    {% if object.active_version %}
+                    {{ object.active_version }}
+                    {% endif %}
                 </div>
 
 
