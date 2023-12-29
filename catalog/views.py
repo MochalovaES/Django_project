@@ -39,8 +39,14 @@ class ProductListView(ListView):
     template_name = 'catalog/product_list.html'
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['version'] = Version.objects.all()
+        context = super(ProductListView, self).get_context_data(**kwargs)
+        for object in context['product_list']:
+            active_version = Version.objects.filter(product=object, is_active=True).last()
+            if active_version:
+                object.active_version_number = active_version.number_version
+                object.name_version = active_version.name_version
+            else:
+                object.active_version_number = None
         return context
 
 
@@ -82,3 +88,7 @@ class ProductUpdateView(UpdateView):
         else:
             return self.form_invalid(form)
         return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('catalog:product_list')
+
