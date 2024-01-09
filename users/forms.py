@@ -1,11 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.forms import AuthenticationForm as DjangoAuthenticationForm
 from django import forms
-
 from catalog.forms import StyleFormMixin
 from users.models import User
-from django.core.exceptions import ValidationError
-from django.contrib.auth import authenticate
 
 
 class UserRegisterForm(StyleFormMixin, UserCreationForm):
