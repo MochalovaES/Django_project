@@ -28,8 +28,8 @@ class RegisterView(CreateView):
     def form_valid(self, form):
         new_user = form.save()
         send_mail(
-            subject='Подтверждение почты',
-            message=f'Код {new_user.ver_code}',
+            subject='Поздравляем с регистрацией!',
+            message=f'Вы зарегистрировались на нашей платформе, добро пожаловать!',
             from_email=settings.EMAIL_HOST_USER,
             recipient_list=[new_user.email]
         )
