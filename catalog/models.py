@@ -1,6 +1,8 @@
+from django.conf import settings
 from django.db import models
 
-NULLABLE = {'blank': True, 'null': True }
+NULLABLE = {'blank': True, 'null': True}
+
 
 class Category(models.Model):
     name = models.CharField(max_length=150, verbose_name='наименование')
@@ -25,6 +27,8 @@ class Product(models.Model):
     creation_date = models.DateField(verbose_name='Дата создания', default='2023-01-01')
     last_date = models.DateField(verbose_name='Дата последнего изменения', default='2023-01-01')
 
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
+
     def __str__(self):
         # Строковое отображение объекта
         return f'{self.name } {self.category}'
@@ -46,3 +50,4 @@ class Version(models.Model):
     class Meta:
         verbose_name = 'Версия'
         verbose_name_plural = 'Версии'
+        unique_together = (('number_version', 'product'),)

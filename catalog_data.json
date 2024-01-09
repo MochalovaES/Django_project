@@ -3,24 +3,198 @@
     "model": "catalog.category",
     "pk": 1,
     "fields": {
-      "name": "Овощи",
-      "description": "Свежие овощи"
+      "name": "овощи",
+      "description": "свежие овощи",
+      "is_active": true
     }
   },
   {
     "model": "catalog.category",
     "pk": 2,
     "fields": {
-      "name": "Фрукты",
-      "description": "Свежие фрукты"
+      "name": "овощи",
+      "description": "свежие овощи",
+      "is_active": true
     }
   },
   {
     "model": "catalog.category",
     "pk": 3,
     "fields": {
-      "name": "Молочные продукты",
-      "description": "Продукты, изготовленные из коровьего молока"
+      "name": "фрукты",
+      "description": "свежие фрукты",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "name": "фрукты",
+      "description": "свежие фрукты",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "name": "овощи",
+      "description": "свежие овощи",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 6,
+    "fields": {
+      "name": "орехи",
+      "description": "обжаренные орехи",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 7,
+    "fields": {
+      "name": "зелень",
+      "description": "свежая зелень",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Картофель",
+      "description": "клубни молодого картофеля",
+      "image": "",
+      "category": 1,
+      "price": 100,
+      "creation_date": "2023-01-01",
+      "last_date": "2023-01-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Томаты",
+      "description": "Красные спелые плоды томата",
+      "image": "",
+      "category": 1,
+      "price": 150,
+      "creation_date": "2023-01-01",
+      "last_date": "2023-01-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "name": "Яблоки",
+      "description": "Спелые красные яблоки",
+      "image": "",
+      "category": 2,
+      "price": 200,
+      "creation_date": "2023-01-01",
+      "last_date": "2023-01-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "name": "Апельсины",
+      "description": "Плоды оранжевого цвета сладкого вкуса",
+      "image": "",
+      "category": 2,
+      "price": 250,
+      "creation_date": "2023-01-01",
+      "last_date": "2023-01-01"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 6,
+    "fields": {
+      "name": "Миндаль",
+      "description": "Обжаренный орех",
+      "image": "",
+      "category": 6,
+      "price": 800,
+      "creation_date": "2023-01-01",
+      "last_date": "2023-01-01"
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "product": 3,
+      "number_version": 1,
+      "name_version": "первая",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "product": 2,
+      "number_version": 1,
+      "name_version": "первая",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "product": 6,
+      "number_version": 1,
+      "name_version": "первая",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 4,
+    "fields": {
+      "product": 4,
+      "number_version": 1,
+      "name_version": "первая",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 5,
+    "fields": {
+      "product": 1,
+      "number_version": 1,
+      "name_version": "первая",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 6,
+    "fields": {
+      "product": 2,
+      "number_version": 2,
+      "name_version": "вторая",
+      "is_active": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 7,
+    "fields": {
+      "product": 2,
+      "number_version": 3,
+      "name_version": "третья",
+      "is_active": true
     }
   }
 ]
