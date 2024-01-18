@@ -26,8 +26,8 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Цена за шт.')
     creation_date = models.DateField(verbose_name='Дата создания', default='2023-01-01')
     last_date = models.DateField(verbose_name='Дата последнего изменения', default='2023-01-01')
-
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE, verbose_name='Владелец')
+    is_published = models.BooleanField(default=False, verbose_name="Опубликовано")
 
     def __str__(self):
         # Строковое отображение объекта

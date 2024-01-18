@@ -54,3 +54,11 @@ class VersionForm(forms.ModelForm):
             else:
                 return is_active
         return is_active
+
+
+class ModeratorForm(StyleFormMixin, forms.ModelForm):
+
+    class Meta:
+        model = Product
+        fields = ('description', 'category', 'is_published',)
+
