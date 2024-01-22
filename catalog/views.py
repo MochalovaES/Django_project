@@ -5,6 +5,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from catalog.forms import ProductForm, VersionForm, ModeratorForm
 from catalog.models import Product, Version
+from catalog.services import get_categories_cache
 
 
 def catalog_contacts(request):
@@ -102,3 +103,9 @@ class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
     def get_success_url(self):
         return reverse('catalog:product_list')
 
+
+def categories(request):
+    context = {
+        "objects_list": get_categories_cache(),
+    }
+    return render(request, 'catalog:product_detail.html', context=context)
